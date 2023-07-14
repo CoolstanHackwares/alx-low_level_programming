@@ -1,11 +1,10 @@
 #include <stdio.h>
 /**
-*main - initial value entry point
-*return : always 0 SUCCESS
+*main - Program that prints a line on screen using puts
+*Return: 0 (SUCCESSFUL)
 **/
 int main(void)
 {
-/*Program Initialization*/
-	puts("\"Programming is like building a multilingual puzzle");
-	return (0);
+puts("\"Programming is like building a multilingual puzzle");
+return (0);
 }
