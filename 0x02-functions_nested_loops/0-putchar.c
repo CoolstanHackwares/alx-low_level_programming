@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <unistd.h>
 #include "main.h"
 /**
  * main - Entry Point
@@ -12,13 +10,13 @@
 
 int main(void)
 {
-	char message[] = "_putchar\n";
-
-	for (int a = 0; message[a] != '\0'; a++)
-	{
-	char c = message[a];
-
-	write(1, &c, 1);
-	}
+	_putchar('_');
+	_putchar('p');
+	_putchar('u');
+	_putchar('t');
+	_putchar('c');
+	_putchar('h');
+	_putchar('a');
+	_putchar('r');
 	return (0);
 }
