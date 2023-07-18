@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
+#include "main.h"
 /**
  * main - Entry Point
  * Description: This program prints _putchar to the screen
