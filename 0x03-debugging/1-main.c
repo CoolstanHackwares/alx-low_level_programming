@@ -13,11 +13,10 @@ int main(void)
 
 	i = 0;
 
-/* This block of code below causes the infinite loop */
 
-	while (i < 10)
+	/*while (i < 10)*/
 {
-	putchar(i);
+	/*putchar(i);*/
 }
 
 
