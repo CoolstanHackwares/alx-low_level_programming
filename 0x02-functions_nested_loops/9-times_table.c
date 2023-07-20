@@ -24,13 +24,13 @@ void times_table(void)
 				_putchar(',');
 				_putchar(' ');
 				_putchar(' ');
-				_putchar(k + '0');
+				_putchar(q + '0');
 			} else if (q >= 10)
 			{
 				_putchar(',');
 				_putchar(' ');
-				_putchar((k / 10) + '0');
-				_putchar((k % 10) + '0');
+				_putchar((q / 10) + '0');
+				_putchar((q % 10) + '0');
 			}
 		}
 		_putchar('\n');
