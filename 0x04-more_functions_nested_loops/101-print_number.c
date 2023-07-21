@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_number - A program that prints an integer
+ * print_number - This program prints an integer
  * @n: The integer to be printed
  * This program conforms to the betty documentation style
  **/
@@ -17,24 +17,9 @@ void print_number(int n)
 	{
 		n1 = n;
 	}
-
-	if (n1 == 0)
+	if (n1 / 10)
 	{
-		_putchar('0');
-		return;
+		print_number(n1 / 10);
 	}
-
-	unsigned int divisor = 1;
-
-	do {
-		divisor *= 10;
-
-	} while (n1 / divisor >= 10);
-
-	do {
-		_putchar((n1 / divisor) + '0');
-		n1 %= divisor;
-		divisor /= 10;
-	} while (divisor != 0);
+	_putchar((n1 % 10) + '0');
 }
-
