@@ -10,22 +10,14 @@
 
 char *string_toupper(char *a)
 {
-	if (a == ())
-{
-	return ();
-}
+	int k;
 
-	char *s = a;
-
-	while (*s)
+	for (k = 0; a[k] != '\0'; k++)
 {
-	if (*s >= 'a' && *s <= 'z')
+	if (a[k] >= 'a' && a[k] <= 'z')
 {
-	*s = *s - ('a' - 'A');
+	a[k] = a[k] - 32;
 }
-	s++;
 }
-
 	return (a);
 }
-
