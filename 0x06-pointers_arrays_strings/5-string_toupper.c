@@ -3,19 +3,19 @@
 /**
  * string_toupper - A function that changes all lowercase letters
  * of a string to uppercase
- * @str: The string to convert to uppercase
+ * @a: The string to convert to uppercase
  * Return: The converted string
  * This program conforms to the betty documentation style
  **/
 
-char *string_toupper(char *str)
+char *string_toupper(char *a)
 {
-	if (str == NULL)
+	if (a == ())
 {
-	return (NULL);
+	return ();
 }
 
-	char *s = str;
+	char *s = a;
 
 	while (*s)
 {
@@ -26,6 +26,6 @@ char *string_toupper(char *str)
 	s++;
 }
 
-	return (str);
+	return (a);
 }
 
