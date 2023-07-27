@@ -6,6 +6,7 @@
  * @src: character src
  * @n: Length of int
  * Return: The pointer to the resulting string dest
+ * This program conforms to the betty documentation style
  **/
 
 char *_strncat(char *dest, char *src, int n)
