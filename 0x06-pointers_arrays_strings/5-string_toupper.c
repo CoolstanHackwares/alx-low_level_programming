@@ -17,15 +17,15 @@ char *string_toupper(char *str)
 
 	char *s = str;
 
-	while (*str)
+	while (*s)
 {
-	if (*str >= 'a' && *str <= 'z')
+	if (*s >= 'a' && *s <= 'z')
 {
-	*str = *str - ('a' - 'A');
+	*s = *s - ('a' - 'A');
 }
-	str++;
+	s++;
 }
 
-	return (s);
+	return (str);
 }
 
