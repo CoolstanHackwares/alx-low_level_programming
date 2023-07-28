@@ -4,30 +4,22 @@
  * leet - A function that encodes a string into 1337
  * @s: The string to encode
  * Return: The address of s
- */
+ * This program conforms to the betty documentation style
+ **/
 
 char *leet(char *s)
 {
-	if (s == NULL)
-{
-	return (NULL);
-}
+	int f, g;
+	char a[] = "aAeEoOtTlL";
+	char b[] = "4433007711";
 
-	char letters[] = "aeotl";
-	char numbers[] = "43071";
-
-	for (int i = 0; s[i]; i++)
+	for (f = 0; *(s + i); f++)
 {
-	for (int j = 0; letters[j]; j++)
+	for (g = 0; g <= 9; g++)
 {
-	if (s[i] == letters[j] || s[i] == letters[j] - 32)
-{
-	s[i] = numbers[j];
-	break;
+	if (a[g] == s[f])
+	s[f] = b[g];
 }
 }
-}
-
 	return (s);
 }
-
