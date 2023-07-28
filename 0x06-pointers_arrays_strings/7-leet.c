@@ -1,35 +1,33 @@
 #include "main.h"
 
 /**
- * leet - Encodes a string into 1337
- * @str: The string to encode
- * Return: The encoded string
- * This program conforms to the betty documentation style
- **/
-char *leet(char *str)
+ * leet - A function that encodes a string into 1337
+ * @s: The string to encode
+ * Return: The address of s
+ */
+
+char *leet(char *s)
 {
-	if (str == NULL)
+	if (s == NULL)
 {
 	return (NULL);
 }
 
-	char *s = str;
-	char leet_map[5][2] = {
-	{'a', '4'}, {'e', '3'}, {'o', '0'}, {'t', '7'}, {'l', '1'}
-};
+	char letters[] = "aeotl";
+	char numbers[] = "43071";
 
-	for (; *s; s++)
+	for (int i = 0; s[i]; i++)
 {
-	for (int i = 0; i < 5; i++)
+	for (int j = 0; letters[j]; j++)
 {
-	if (*s == leet_map[i][0] || *s == leet_map[i][0] - 32)
+	if (s[i] == letters[j] || s[i] == letters[j] - 32)
 {
-	*s = leet_map[i][1];
+	s[i] = numbers[j];
 	break;
 }
 }
 }
 
-	return (str);
+	return (s);
 }
 
