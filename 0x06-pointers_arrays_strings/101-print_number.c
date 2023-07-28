@@ -15,13 +15,12 @@ void print_number(int n)
 {
 	m = -n;
 	_putchar('-');
-}
-	else
+
+else
 {
 	m = n;
 }
-	if (m / n)
-{
+	if (m / 10)
 	print_number(m / 10);
 
 	_putchar((m % 10) + '0');
