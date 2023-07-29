@@ -11,38 +11,42 @@
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int len1 = 0, len2 = 0, carry = 0, sum;
-	int i, j, k;
+	int i, j, k, l, m, n;
+	int len1 = 0, len2 = 0;
 
 	while (n1[len1])
 	len1++;
 	while (n2[len2])
 	len2++;
 
-	if (size_r <= len1 || size_r <= len2 || size_r <= len1 + 1)
+	if (len1 >= size_r - 1 || len2 >= size_r - 1)
 	return (0);
 
-	r[size_r - 1] = '\0';
 	i = len1 - 1;
 	j = len2 - 1;
-	k = size_r - 2;
+	k = 0;
+	m = 0;
 
-	while (i >= 0 || j >= 0 || carry)
+	while (i >= 0 || j >= 0 || m)
 {
-	sum = carry;
-
+	n = m;
 	if (i >= 0)
-	sum += n1[i--] - '0';
+	n += n1[i--] - '0';
 	if (j >= 0)
-	sum += n2[j--] - '0';
+	n += n2[j--] - '0';
 
-	carry = sum / 10;
-	r[k--] = sum % 10 + '0';
+	m = n / 10;
+	r[k++] = n % 10 + '0';
+}
+	for (l = 0, k -= 1; l < k; k--, l++)
+{
+	m = r[k];
+	r[k] = r[l];
+	r[l] = m;
 }
 
-	if (k == -1)
-	return (0);
+	r[k] = '\0';
 
-	return (r + k + 1);
+	return (r);
 }
 
