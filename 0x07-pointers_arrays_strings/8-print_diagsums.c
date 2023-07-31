@@ -11,7 +11,10 @@
 
 void print_diagsums(int *a, int size)
 {
-	int sum_main = 0, sum_secondary = 0;
+	int i;
+	unsigned int sum_main, sum_secondary;
+
+	int sum_main = 0; sum_secondary = 0;
 
 	for (int i = 0; i < size; i++)
 {
