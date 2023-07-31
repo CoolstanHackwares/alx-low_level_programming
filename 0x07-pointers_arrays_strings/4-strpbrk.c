@@ -11,8 +11,6 @@
 
 char *_strpbrk(char *s, char *accept)
 {
-	char *p = NULL;
-
 	while (*s != '\0')
 {
 	char *a = accept;
@@ -20,19 +18,13 @@ char *_strpbrk(char *s, char *accept)
 	while (*a != '\0')
 {
 	if (*s == *a)
-{
-	p = s;
-	break;
-}
+	return (s);
 	a++;
 }
-
-	if (p != NULL)
-	break;
 
 	s++;
 }
 
-	return (p);
+	return ('\0');
 }
 
