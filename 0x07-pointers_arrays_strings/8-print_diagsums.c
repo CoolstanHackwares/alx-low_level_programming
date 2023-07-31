@@ -16,10 +16,6 @@ void print_diagsums(int *a, int size)
 	for (int i = 0; i < size; i++)
 {
 	sum_main += *(a + size * i + i);
-}
-
-	for (int i = 0; i < size; i++)
-{
 	sum_secondary += *(a + size * (i + 1) - (i + 1));
 }
 
