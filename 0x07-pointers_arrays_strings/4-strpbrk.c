@@ -27,7 +27,7 @@ char *_strpbrk(char *s, char *accept)
 	a++;
 }
 
-	if (p != '\0')
+	if (p != NULL)
 	break;
 
 	s++;
