@@ -2,8 +2,8 @@
 
 /**
  * _memset - A function that fills memory with a constant byte
- * @s: memory area to be filled
- * @b: character to copy
+ * @s: A pointer to the memory area to be filled with the constant byte
+ * @b: character (byte) to be copied to the memory area s.
  * @n: number of times to copy b
  * Return: pointer to the memory area s
  * This program conforms to the betty documentation style
