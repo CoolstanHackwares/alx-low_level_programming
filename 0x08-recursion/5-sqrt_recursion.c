@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- ** find_sqrt - A helper function to find the natural square root of a number.
- ** @n: The number to find the square root of.
- ** @a: The starting value of the search range.
- ** @z: The ending value of the search range.
- ** Return: The square root of the number if found, otherwise -1.
+ * find_sqrt - A helper function to find the natural square root of a number.
+ * @n: The number to find the square root of.
+ * @a: The starting value of the search range.
+ * @z: The ending value of the search range.
+ * Return: The square root of the number if found, otherwise -1.
  **/
 
 int find_sqrt(int n, int a, int z)
@@ -18,15 +18,15 @@ int find_sqrt(int n, int a, int z)
 
 	if (square == n)
 {
-	return h;
+	return (h);
 }
 	else if (square > n)
 {
-	return find_sqrt(n, a, h - 1);
+	return (find_sqrt(n, a, h - 1));
 }
 	else
 {
-	return find_sqrt(n, h + 1, z);
+	return (find_sqrt(n, h + 1, z));
 }
 }
 
@@ -34,9 +34,10 @@ int find_sqrt(int n, int a, int z)
 }
 
 /**
- ** _sqrt_recursion - A function that returns the natural square root of a number.
- ** @n: The number to find the square root of.
- ** Return: -1 if n does not have a natural square root.
+ * _sqrt_recursion - A function that returns the natural
+ * square root of a number.
+ * @n: The number to find the square root of.
+ * Return: -1 if n does not have a natural square root.
  **/
 
 int _sqrt_recursion(int n)
@@ -51,6 +52,6 @@ int _sqrt_recursion(int n)
 }
 	else
 {
-	return find_sqrt(n, 1, n / 2);
+	return (find_sqrt(n, 1, n / 2));
 }
 }
