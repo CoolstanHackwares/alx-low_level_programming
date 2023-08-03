@@ -52,6 +52,6 @@ int _sqrt_recursion(int n)
 }
 	else
 {
-	return (find_sqrt(n, 1, n / 2));
+	return (find_sqrt(n, 1, n));
 }
 }
