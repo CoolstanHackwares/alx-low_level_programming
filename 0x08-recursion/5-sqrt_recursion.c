@@ -4,7 +4,6 @@
  * find_sqrt - A helper function to find the natural square root of a number.
  * @n: The number to find the square root of.
  * @a: The starting value of the search range.
- * @h: The middle value of the search range
  * @z: The ending value of the search range.
  * Return: The square root of the number if found, otherwise -1.
  **/
