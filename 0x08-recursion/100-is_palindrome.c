@@ -1,55 +1,48 @@
 #include "main.h"
 
 /**
- * The function prototype for my_pal
- * @s: The string to check
- * @length: The length of the string
+ * is_palindrome - A function that checks if a string is a palindrome
+ * @s: The character array string
  * Return: 1 if s is a palindrome, 0 if not
  **/
-
-int my_pal(char *s, int start, int end);
-
-/**
- * is_palindrome - A function that checks if a string is a palindrome
- * @s: The characte array string
- * Return: 1 if palindrome, 0 if not
- **/
-
 int is_palindrome(char *s)
 {
-	int length = 0;
-	char *temp = s;
+	int length;
 
-	while (*temp != '\0')
-{
-	length++;
-	temp++;
-}
-
-	return (my_pal(s, 0, length - 1));
+	length = get_length(s) - 1;
+	return (my_pal(s, --length));
 }
 
 /**
- * my_pal - A helper function that recursively checks for a palindrome
+ * get_length - A function that gets the length of string
  * @s: The input string
- * @start: The starting index
- * @end: The ending index
+ * Return: The length of the string
+ **/
+
+int get_length(char *s)
+{
+	if (*s == '\0')
+	return (1);
+	else
+	return (1 + get_length(++s));
+}
+
+/**
+ * my_pal - A helper function that checks for a palindrome recursively
+ * @s: The string to check
+ * @l: The length of the string
  * Return: 1 if s is a palindrome, 0 if not
  **/
 
-int my_pal(char *s, int start, int end)
+int my_pal(char *s, int l)
 {
-	if (start >= end)
+	if (*s == *(s + l))
 {
+	if (l <= 0)
 	return (1);
-}
-	else if (s[start] == s[end])
-{
-	return (my_pal(s, start + 1, end - 1));
+	else
+	return (my_pal(++s, l - 2));
 }
 	else
-{
 	return (0);
 }
-}
-
