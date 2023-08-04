@@ -1,8 +1,7 @@
 #include "main.h"
 
 /**
- * _puts_recursion_helper - A function to use in the code
- * using recursion.
+ * _puts_recursion_helper - A helper function to use in the code
  * @s: The string to print
  * Return: Nothing
  * This program conforms to the betty documentation style.
