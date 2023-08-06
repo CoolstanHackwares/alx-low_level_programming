@@ -14,14 +14,14 @@
 
 int main(int argc, char *argv[])
 {
-	int cents, quarters, dimes, nickels, pennies, total_coins;
+	int cents, num_coins, coin_count, i;
+	int coins[] = {25, 10, 5, 2, 1};
 
 	if (argc != 2)
 {
-	puts("Error");
+	printf("Error\n");
 	return (1);
 }
-
 	cents = atoi(argv[1]);
 
 	if (cents < 0)
@@ -30,13 +30,15 @@ int main(int argc, char *argv[])
 	return (0);
 }
 
-	quarters = cents / 25;
-	dimes = (cents % 25) / 10;
-	nickels = ((cents % 25) % 10) / 5;
-	pennies = ((cents % 25) % 10) % 5;
+	num_coins = sizeof(coins) / sizeof(coins[0]);
+	coin_count = 0;
 
-	total_coins = quarters + dimes + nickels + pennies;
+	for (i = 0; i < num_coins; i++)
+{
+	coin_count += cents / coins[i];
+	cents %= coins[i];
+}
 
-	printf("%d\n", total_coins);
+	printf("%d\n", coin_count);
 	return (0);
 }
