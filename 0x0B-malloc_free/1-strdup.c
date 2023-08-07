@@ -12,25 +12,25 @@
 
 char *_strdup(char *str)
 {
+	int length =0;
+	int i;
+	char *duplicate;
+
 	if (str == NULL)
 {
 	return (NULL);
 }
-
-	int length = 0;
 
 	while (str[length] != '\0')
 {
 	length++;
 }
 
-char *duplicate = (char *)malloc((length + 1) * sizeof(char));
+duplicate = (char *)malloc((length + 1) * sizeof(char));
 	if (duplicate == NULL)
 {
 	return (NULL);
 }
-	int i;
-
 	for (i = 0; i <= length; i++)
 {
 	duplicate[i] = str[i];
