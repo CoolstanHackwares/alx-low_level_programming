@@ -14,6 +14,8 @@ char *argstostr(int ac, char **av)
 {
 	int a;
 	int total_length = 0;
+	char *arg;
+	char *current;
 
 	if (ac == 0 || av == NULL)
 {
@@ -21,7 +23,7 @@ char *argstostr(int ac, char **av)
 }
 	for (a = 0; a < ac; a++)
 {
-	char *arg = av[a];
+	arg = av[a];
 
 	while (*arg)
 {
@@ -35,12 +37,10 @@ char *result = (char *)malloc(total_length + 1);
 {
 	return (NULL);
 }
-	char *current = result;
-
+	current = result;
 	for (a = 0; a < ac; a++)
 {
-	char *arg = av[a];
-
+	arg = av[a];
 	while (*arg)
 {
 	*current = *arg;
