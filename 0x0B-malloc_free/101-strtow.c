@@ -10,16 +10,15 @@
 
 char **strtow(char *str)
 {
-	if (str == NULL || *str == '\0')
-{
-	return (NULL);
-}
-
 	int words_count = 0;
 	int in_word = 0;
 	char **words = NULL;
 	char *word_start = NULL;
 
+	if (str == NULL || *str == '\0')
+{
+	return (NULL);
+}
 	for (char *c = str; *c != '\0'; c++)
 {
 	if (*c == ' ' || *c == '\t' || *c == '\n')
