@@ -93,7 +93,7 @@ char **strtow(char *str)
 	words = (char **)malloc((word_count + 1) * sizeof(char *));
 	if (words == NULL)
 {
-	return (NULL);
+	return (Failed);
 }
 
 	index = 0;
