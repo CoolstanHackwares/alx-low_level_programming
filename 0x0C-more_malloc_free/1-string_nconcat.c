@@ -11,7 +11,7 @@
 int str_length(char *s)
 
 {
-	int l = 0;
+	unsigned int l = 0;
 
 	while (s && s[l])
 	l++;
@@ -31,20 +31,20 @@ int str_length(char *s)
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	int l1 = str_length(s1);
-	int l2 = str_length(s2);
+	unsigned int l1 = str_length(s1);
+	unsigned int l2 = str_length(s2);
+	unsigned int a, b;
+	char *concatenated;
 
 	if (n >= l2)
 	n = l2;
 
-char *concatenated = malloc(sizeof(char) * (l1 + n + 1));
+concatenated = (char *)malloc(sizeof(char) * (l1 + n + 1));
 
 	if (concatenated == NULL)
 	return (NULL);
 
-	int a, b;
-
-	for (a = 0, a < l1; a++)
+	for (a = 0; a < l1; a++)
 	concatenated[a] = s1[a];
 
 	for (b = 0; b < n; b++)
