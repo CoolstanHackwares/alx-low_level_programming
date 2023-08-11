@@ -12,6 +12,9 @@
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *allocated_memory;
+	unsigned int a;
+	unsigned int total_size;
+	char *p;
 
 	if (nmemb == 0 || size == 0)
 	return (NULL);
@@ -20,10 +23,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 	if (allocated_memory == NULL)
 	return (NULL);
-
-	unsigned int a;
-	unsigned int total_size;
-	char *p;
 
 	p = (char *)allocated_memory;
 	total_size = nmemb * size;
