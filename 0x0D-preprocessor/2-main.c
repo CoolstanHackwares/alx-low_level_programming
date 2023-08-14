@@ -10,6 +10,6 @@
 
 int main(void)
 {
-	Printf("%s/n", __FILE__);
+	Printf("%s\n", __FILE__);
 	return (0);
 }
