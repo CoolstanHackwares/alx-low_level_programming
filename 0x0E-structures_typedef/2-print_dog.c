@@ -3,7 +3,7 @@
 
 /**
  * print_dog - A function that prints a struct dog
- * @d: The dog structure 
+ * @d: The dog structure
  * This program conforms to the betty documentation style
  **/
 
