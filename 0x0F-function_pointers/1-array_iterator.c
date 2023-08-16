@@ -4,6 +4,7 @@
  * array_iterator - A function that executes a function given as a parameter on
  * each element of an array.
  * @size: The size of the array
+ * @array: The array to work on
  * @action: A pointer to a function that takes an int as argument
  * This program conforms to the betty documentation style
  **/
