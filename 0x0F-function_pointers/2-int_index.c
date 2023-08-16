@@ -5,8 +5,8 @@
  * @size: The number of elements in the array
  * @array: The array of integers
  * @cmp: A pointer to the function to be used to compare values
- * @Return: index of first element for which cmp matches,
- * (if no element matches and if size is <= 0 return -1).
+ * Return: index of first element for which cmp matches,
+ * if no element matches and if size is <= 0 return -1.
  * This program conforms to the betty documentation stye
  **/
 
