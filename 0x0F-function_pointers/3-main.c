@@ -25,6 +25,6 @@ int main(int argc, char *argv[])
 	printf("Error\n");
 	exit(99);
 }
-	printf("%d\n", operator(atoi(argv[1], atoi(argv[3])));
+	printf("%d\n", operator(atoi(argv[1]), atoi(argv[3])));
 	return (0);
 }

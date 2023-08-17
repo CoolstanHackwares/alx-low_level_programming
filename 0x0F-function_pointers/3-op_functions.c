@@ -56,11 +56,9 @@ int op_div(int a, int b)
 	printf("Error\n");
 	exit(100);
 }
-	if (b != 0)
-{
 	return (a / b);
 }
-}
+
 
 /**
  * op_mod - A function that produces the result of the remainder
@@ -78,9 +76,7 @@ int op_mod(int a, int b)
 	printf("Error\n");
 	exit(100);
 }
-	if (b != 0)
-{
 	return (a % b);
 }
-}
+
 
