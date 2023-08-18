@@ -55,11 +55,9 @@ void print_char_ptr(char *separator, va_list args)
 	if (arg == NULL)
 {
 	printf("%s%s", separator, "(nil)");
+	return;
 }
-	else
-{
 	printf("%s%s", separator, arg);
-}
 }
 
 /**
