@@ -1,57 +1,108 @@
 #include "variadic_functions.h"
-#include <stdarg.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 /**
- * print_all - A function that prints anything
- * @format: The list of arguments passed to the function
+ * print_char - A function that prints a char argument.
+ * @args: The va_list containing the argument.
+ * This program conforms to the betty documentation style
+ **/
+
+void print_char(va_list args)
+{
+	char c;
+
+	c = va_arg(args, int);
+	printf("%c", c);
+}
+
+/**
+ * print_int - A function that prints an int argument.
+ * @args: The va_list containing the argument.
+ * This program conforms to the betty documentation style
+ **/
+
+void print_int(va_list args)
+{
+	int i;
+
+	i = va_arg(args, int);
+	printf("%d", i);
+}
+
+/**
+ * print_float - A function that prints a float argument.
+ * @args: The va_list containing the argument.
+ * This program conforms to the betty documentation style
+ **/
+
+void print_float(va_list args)
+{
+	double f;
+
+	f = va_arg(args, double);
+	printf("%f", f);
+}
+
+/**
+ * print_string - A function that prints a string argument.
+ * @args: The va_list containing the argument.
+ * This program conforms to the betty documentation style
+ **/
+
+void print_string(va_list args)
+{
+	char *s;
+
+	s = va_arg(args, char *);
+	if (s == NULL)
+	printf("(nil)");
+	else
+	printf("%s", s);
+}
+
+/**
+ * print_all - A function that print anything based on a format string.
+ * @format: The format string containing argument types.
  * c: char
  * i: integer
  * f: float
- * s: char * (if the string is NULL, print (nil) instead)
- * Any other char is ignored
+ * s: string (if NULL, print "(nil)")
+ * Any other character is ignored.
+ * ...: The arguments to be printed.
  * This program conforms to the betty documentation style
  **/
 
 void print_all(const char * const format, ...)
 {
+	void (*print_functions[4])(va_list);
+	const char *format_ptr = format;
 	va_list args;
-	unsigned int a = 0;
-	char *str;
-	char current_format;
-	char *separator = "";
+
+	print_functions[0] = print_char;
+	print_functions[1] = print_int;
+	print_functions[2] = print_float;
+	print_functions[3] = print_string;
 
 	va_start(args, format);
 
-	while (format && format[a])
+	while (*format_ptr)
 {
-	current_format = format[a];
+	if (*format_ptr == 'c')
+	print_functions[0](args);
+	else if (*format_ptr == 'i')
+	print_functions[1](args);
+	else if (*format_ptr == 'f')
+	print_functions[2](args);
+	else if (*format_ptr == 's')
+	print_functions[3](args);
 
-	switch (current_format)
-{
-	case 'c':
-	printf("%s%c", separator, va_arg(args, int));
-	break;
-	case 'i':
-	printf("%s%d", separator, va_arg(args, int));
-	break;
-	case 'f':
-	printf("%s%f", separator, va_arg(args, double));
-	break;
-	case 's':
-	str = va_arg(args, char *);
-	if (str == NULL)
-	printf("%s%s", separator, "(nil)");
-	else
-	printf("%s%s", separator, str);
-	break;
-}
-
-	separator = ", ";
-	a++;
+	format_ptr++;
+	if (*format_ptr)
+	printf(", ");
 }
 
 	va_end(args);
+
 	printf("\n");
 }
-
