@@ -30,7 +30,7 @@ void print_int(char *separator, va_list args)
 }
 
 /**
-  * print_float - PA function that prints a float type character
+  * print_float - A function that prints a float type character
   * @separator: The character separator
   * @args: The list of arguments passed to the prrogram
   * Return: Nothing
@@ -43,18 +43,20 @@ void print_float(char *separator, va_list args)
 }
 
 /**
-  * print_char_ptr - Prints the content of pointer to char type
-  * @separator: The separator of the character
-  * @args: A list of variadic arguments
+  * print_char_ptr - A function that prints the content of a pointer to char
+  * @separator: The character separator
+  * @args: The list of arguments passed to the program
   * Return: Nothing
-  */
+  * This program conforms to the betty documentation style
+  **/
+
 void print_char_ptr(char *separator, va_list args)
 {
 	char *arg = va_arg(args, char *);
 
 	if (arg == NULL)
 {
-	printf("%s%s", separator, "(nil)");
+	printf("%s(nil)", separator);
 }
 	printf("%s%s", separator, arg);
 }
