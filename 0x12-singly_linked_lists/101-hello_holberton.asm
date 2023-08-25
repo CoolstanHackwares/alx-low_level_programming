@@ -8,7 +8,7 @@ extern printf
 
 main:
     push rbp            ; Prologue for stack frame
-    mov rdi, format
+    mov rdi, message
     call printf
     pop rbp             ; Epilogue for stack frame
 
