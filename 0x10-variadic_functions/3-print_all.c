@@ -58,10 +58,7 @@ void print_char_ptr(char *separator, va_list args)
 {
 	printf("%s(nil)", separator);
 }
-	else
-{
 	printf("%s%s", separator, arg);
-}
 }
 
 
