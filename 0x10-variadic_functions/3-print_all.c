@@ -61,6 +61,7 @@ void print_char_ptr(char *separator, va_list args)
 	printf("%s%s", separator, arg);
 }
 
+
 /**
   * print_all - A function that prints anything according to a specified format
   * @format: The list of argument types passed to the function
