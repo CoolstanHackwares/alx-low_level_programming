@@ -90,6 +90,7 @@ void print_all(const char * const format, ...)
 {
 	form_types[b].p(separator, args);
 	separator = ", ";
+	break;
 }
 	b++;
 }
