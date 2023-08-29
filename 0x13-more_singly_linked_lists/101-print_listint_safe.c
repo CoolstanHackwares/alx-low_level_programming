@@ -11,17 +11,23 @@
  * This program conforms to the betty documentation style
  **/
 
-int is_in_loop(const listint_t *head, const listint_t *node)
+int is_in_loop(const listint_t *node)
 {
-	const listint_t *current;
+	const listint_t *tortoise;
+	const listint_t *hare;
 
-	current = head;
+	tortoise = node;
+	hare = node;
 
-	while (current != NULL)
+	while (hare != NULL && hare->next != NULL)
 {
-	if (current == node)
+	tortoise = tortoise->next;
+	hare = hare->next->next;
+
+	if (tortoise == hare)
+{
 	return (1);
-	current = current->next;
+}
 }
 
 	return (0);
@@ -41,20 +47,18 @@ size_t print_listint_safe(const listint_t *head)
 
 	current = head;
 
-	while (current != NULL)
+	while (current != NULL && !is_in_loop(current))
 {
 	printf("[%p] %d\n", (void *)current, current->n);
 	count++;
-
-	if (is_in_loop(head, current->next))
-{
-	printf("-> [%p] %d\n", (void *)current->next, current->next->n);
-	break;
-}
-
 	current = current->next;
 }
 
+	if (current != NULL)
+{
+	printf("[%p] %d\n", (void *)current, current->n);
+	printf("-> [%p] %d\n", (void *)current->next, current->next->n);
+}
 	return (count);
 }
 
