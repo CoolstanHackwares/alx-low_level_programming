@@ -29,7 +29,6 @@ int is_in_loop(const listint_t *node)
 	return (1);
 }
 }
-
 	return (0);
 }
 
@@ -47,18 +46,27 @@ size_t print_listint_safe(const listint_t *head)
 
 	current = head;
 
-	while (current != NULL && !is_in_loop(current))
+	if (is_in_loop(current))
+{
+	while (1)
+{
+	printf("[%p] %d\n", (void *)current, current->n);
+	count++;
+	current = current->next;
+	if (current == NULL || current->next == NULL)
+	break;
+}
+	if (current != NULL)
+	printf("-> [%p] %d\n", (void *)current, current->n);
+}
+	else
+{
+	while (current != NULL)
 {
 	printf("[%p] %d\n", (void *)current, current->n);
 	count++;
 	current = current->next;
 }
-
-	if (current != NULL)
-{
-	printf("[%p] %d\n", (void *)current, current->n);
-	printf("-> [%p] %d\n", (void *)current->next, current->next->n);
 }
 	return (count);
 }
-
