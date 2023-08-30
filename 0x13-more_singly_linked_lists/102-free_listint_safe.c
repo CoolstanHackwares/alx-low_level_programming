@@ -1,6 +1,5 @@
 #include "lists.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * free_listint_safe - Frees a listint_t linked list.
@@ -18,11 +17,8 @@ size_t free_listint_safe(listint_t **h)
 	while (current)
 {
 	temp = current;
-	current = current->next;
 
-	printf("[%p} %d\n", (void *)temp, temp->n);
-
-	if (temp <= current)
+	if (temp <= current->next)
 {
 	*h = NULL;
 	free(temp);
@@ -30,6 +26,7 @@ size_t free_listint_safe(listint_t **h)
 	break;
 }
 
+	current = current->next;
 	free(temp);
 	count++;
 }
