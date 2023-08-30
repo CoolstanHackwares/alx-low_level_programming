@@ -4,7 +4,7 @@
 
 /**
  * print_listint_safe - A function that prints a listint_t linked list
- * in reverse order.
+ * in reverse order, detecting loops.
  * @head: A pointer to the head of the linked list.
  * Return: The number of nodes in the list.
  * This program conforms to the betty documentation style.
@@ -18,33 +18,25 @@ size_t print_listint_safe(const listint_t *head)
 
 	while (current)
 {
-	printf("%d\n", current->n);
-	count++;
+
+	if (current == s)
+{
+	printf("-> [%p] %d\n", (void *)current, current->n);
+	break;
+}
 
 	printf("[%p] %d\n", (void *)current, current->n);
+	count++;
 
 	if (current <= current->next)
 {
-	printf("-> %d\n", current->next->n);
-
 	printf("-> [%p] %d\n", (void *)current->next, current->next->n);
-
 	s = current->next;
-	break;
 }
 
 	current = current->next;
 }
 
-	while (s && s != current)
-{
-	printf("%d\n", s->n);
-
-	printf("[%p] %d\n", (void *)loop_start, loop_start->n);
-
-	s = s->next;
-	count++;
-}
-
 	return (count);
 }
+
