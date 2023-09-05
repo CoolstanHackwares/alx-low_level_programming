@@ -35,24 +35,31 @@ int main(int argc, char *argv[])
 
 	fd_t = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0664);
 	if (fd_t == -1)
+{
+	close(fd_f);
 	error_exit("Can't write to file", 99);
+}
 
 	while ((br = read(fd_f, buffer, BUFF_SIZE)) > 0)
 {
 	bw = write(fd_t, buffer, br);
 	if (bw != br)
-	error_exit("Can't write to file", 99);
+{
+	close(fd_f);
+	close(fd_t);
+	error_exit("Write error occurred", 99);
 }
-
+}
 	if (br == -1)
-	error_exit("Can't read from file", 98);
-
+{
+	close(fd_f);
+	close(fd_t);
+	error_exit("Read error occurred", 98);
+}
 	if (close(fd_f) == -1)
-	error_exit("Can't close fd", 100);
+	error_exit("Can't close source fd", 100);
 
 	if (close(fd_t) == -1)
-	error_exit("Can't close fd", 100);
-
+	error_exit("Can't close target fd", 100);
 	return (0);
 }
-
