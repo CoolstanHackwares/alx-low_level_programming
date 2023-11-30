@@ -27,7 +27,7 @@ void print_type(char *buffer)
 {
 	print_title("Type");
 
-	switch (buffer[6])
+	switch (buffer[16])
 	{
 		case ET_NONE:
 			printf("NONE (None)");
@@ -45,12 +45,11 @@ void print_type(char *buffer)
 			printf("CORE (Core file)");
 			break;
 		default:
-			printf("<unknown>: %x", buffer[6]);
+			printf("<unknown>: %x", buffer[16]);
 			break;
 	}
 	printf("\n");
 }
-
 /**
  * print_ABI_version - A program that prints the ABI version
  * @buffer: The buffer containing the ABI version
@@ -272,7 +271,13 @@ int main(int argc, char **argv)
 	char match[4] = {0x7f, 'E', 'L', 'F'};
 
 	if (argc != 2)
-		print_error_msg("Improper usage\n");
+	{
+		write(STDERR_FILENO, "Usage: ", 7);
+		write(STDERR_FILENO, argv[0], strlen(argv[0]));
+		write(STDERR_FILENO, " <filename>\n", 12);
+		exit(EXIT_FAILURE);
+	}
+
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
@@ -300,7 +305,6 @@ int main(int argc, char **argv)
 
 	if (close(fd))
 		print_error_msg("Could not close the file");
-
 	return (0);
 }
 
