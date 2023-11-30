@@ -27,7 +27,7 @@ void print_type(char *buffer)
 {
 	print_title("Type");
 
-	switch (buffer[16])
+	switch (*(Elf32_Half *)(buffer + 16))
 	{
 		case ET_NONE:
 			printf("NONE (None)");
@@ -44,12 +44,19 @@ void print_type(char *buffer)
 		case ET_CORE:
 			printf("CORE (Core file)");
 			break;
+		case ET_LOPROC:
+			printf("Processor-specific");
+			break;
+		case ET_HIPROC:
+			printf("Processor-specific");
+			break;
 		default:
-			printf("<unknown>: %x", buffer[16]);
+			printf("<unknown>: %x", *(Elf32_Half *)(buffer + 16));
 			break;
 	}
 	printf("\n");
 }
+
 /**
  * print_ABI_version - A program that prints the ABI version
  * @buffer: The buffer containing the ABI version
@@ -140,7 +147,6 @@ void print_OS_ABI(char *buffer)
 	}
 	printf("\n");
 }
-
 /**
  * print_version - A program that prints the version information for ELF Header
  * @buffer: The buffer containing the version info
@@ -245,15 +251,7 @@ void print_class(char *buffer)
 
 void print_title(char *title)
 {
-	int size = 37;
-	int len, k;
-
-	printf("  ");
-	printf("%s:", title);
-	for (len = 0; title[len]; len++)
-		;
-	for (k = 0; k < size - 3 - len; k++)
-		printf(" ");
+	printf("%s:\n", title);
 }
 
 /**
