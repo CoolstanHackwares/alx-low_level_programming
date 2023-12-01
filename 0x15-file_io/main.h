@@ -23,16 +23,15 @@ void error_exit(const char *message, int exit_code);
 
 /*Prototypes for the ELF Header*/
 
-void print_title(char *title);
-void print_errors(char *msg);
-void print_type(char *buffer);
-void print_ABIversion(char *buffer);
-void print_entry(void);
-void print_os(char *buffer);
-void print_version(char *buffer);
-void print_data(char *buffer);
-void print_magic(char *buffer);
-void print_class(char *buffer);
-int main(int argc, char **argv);
+void check_elf(unsigned char *e_ident);
+void print_magic(unsigned char *e_ident);
+void print_class(unsigned char *e_ident);
+void print_data(unsigned char *e_ident);
+void print_version(unsigned char *e_ident);
+void print_abi(unsigned char *e_ident);
+void print_osabi(unsigned char *e_ident);
+void print_type(unsigned int e_type, unsigned char *e_ident);
+void print_entry(unsigned long int e_entry, unsigned char *e_ident);
+void close_elf(int elf);
 
 #endif
