@@ -1,33 +1,33 @@
 #include "main.h"
 
 /**
- * print_error_msg - A program that prints error messages
- * @msg: the error message
- * This program conforms to the Betty documentation style
+ * print_errors - A program that prints errors for the Elf Header
+ * @msg: the error msg to print
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
-void print_error_msg(char *msg)
+void print_errors(char *msg)
 {
 	int len;
 
 	for (len = 0; msg[len]; len++)
 		;
-
 	write(STDERR_FILENO, msg, len);
 	exit(98);
 }
-
 /**
- * print_type - A program that prints the type of the ELF file
- * @buffer: The buffer containing the type information
- * This program conforms to the Betty documentation style
+ * print_type - A program that prints the type of Elf File
+ *
+ * @buffer: the buff containing the type info
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
 void print_type(char *buffer)
 {
 	print_title("Type");
-
-	switch (*(Elf32_Half *)(buffer + 16))
+	switch (buffer[6])
 	{
 		case ET_NONE:
 			printf("NONE (None)");
@@ -44,36 +44,33 @@ void print_type(char *buffer)
 		case ET_CORE:
 			printf("CORE (Core file)");
 			break;
-		case ET_LOPROC:
-			printf("Processor-specific");
-			break;
-		case ET_HIPROC:
-			printf("Processor-specific");
-			break;
 		default:
-			printf("<unknown>: %x", *(Elf32_Half *)(buffer + 16));
+			printf("<unknown>: %x", buffer[6]);
 			break;
 	}
 	printf("\n");
+
 }
 
 /**
- * print_ABI_version - A program that prints the ABI version
- * @buffer: The buffer containing the ABI version
- * This program conforms to the Betty documentation style
+ * print_ABIversion - A program that prints the ABI version
+ * @buffer: the buffer containing the ABI version
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
-void print_ABI_version(char *buffer)
+void print_ABIversion(char *buffer)
 {
 	print_title("ABI Version");
 
 	printf("%d", buffer[8]);
+
 	printf("\n");
 }
 
 /**
  * print_entry - A program that prints the ELF entry point address
- * This program conforms to the Betty documentation style
+ * This program conforms to the betty documentation style
  **/
 
 void print_entry(void)
@@ -81,6 +78,7 @@ void print_entry(void)
 	Elf64_Ehdr h;
 	int k = 0, len = 0;
 	unsigned char *p = (unsigned char *)&h.e_entry;
+
 
 	printf("  Entry point address:               0x");
 	if (h.e_ident[EI_DATA] == ELFDATA2MSB)
@@ -107,12 +105,13 @@ void print_entry(void)
 }
 
 /**
- * print_OS_ABI - A program that prints the OS/ABI information for Elf Header
- * @buffer: The buffer containing the OS/ABI info
- * This program conforms to the Betty documentation style
+ * print_os - A program that prints the os/abi for the Elf Header
+ * @buffer: the buffer containing the os/abi info
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
-void print_OS_ABI(char *buffer)
+void print_os(char *buffer)
 {
 	print_title("OS/ABI");
 
@@ -147,10 +146,12 @@ void print_OS_ABI(char *buffer)
 	}
 	printf("\n");
 }
+
 /**
- * print_version - A program that prints the version information for ELF Header
- * @buffer: The buffer containing the version info
- * This program conforms to the Betty documentation style
+ * print_version- A program that prints the  version info for the Elf Header
+ * @buffer: the buffer containing the version info
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
 void print_version(char *buffer)
@@ -173,10 +174,13 @@ void print_version(char *buffer)
 }
 
 /**
- * print_data - A program that prints the data encoding info for ELF Header
- * @buffer: The buffer containing the data encoding info
- * This program conforms to the Betty documentation style
- */
+ * print_data - A program that prints the data handling for the Elf Header
+ * @buffer: The buffer containing the  data handling info
+ *
+ * Return: nothing
+ * This program conforms to the betty documentation style
+ **/
+
 void print_data(char *buffer)
 {
 	print_title("Data");
@@ -200,9 +204,10 @@ void print_data(char *buffer)
 }
 
 /**
- * print_magic - A program that prints the magic bytes of the ELF Header
- * @buffer: The buffer containing the magic bytes
- * This program conforms to the Betty documentation style
+ * print_magic - A program that prints the Magic for the Elf Header
+ * @buffer: The buffer containing magic
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
 void print_magic(char *buffer)
@@ -216,10 +221,11 @@ void print_magic(char *buffer)
 }
 
 /**
- * print_class - A program that prints the class (32-bit or 64-bit)
- * of the ELF header
- * @buffer: contains class information
- * This program conforms to the Betty documentation style
+ * print_class - A program that prints the class, in class of the Elf Header
+ * @buffer: the buffer containing class or none
+ *
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
 void print_class(char *buffer)
@@ -244,22 +250,31 @@ void print_class(char *buffer)
 }
 
 /**
- * print_title - A program that prints ELF Header titles
- * @title: the title
- * This program conforms to the Betty documentation style
+ * print_title - A program that prints the title of the Elf Header
+ * @title: the title to print
+ * Return: nothing
+ * This program conforms to the betty documentation style
  **/
 
 void print_title(char *title)
 {
-	printf("%s:\n", title);
+	int size = 37;
+	int len, k;
+
+	printf("  ");
+	printf("%s:", title);
+	for (len = 0; title[len]; len++)
+		;
+	for (k = 0; k < size - 3 - len; k++)
+		printf(" ");
 }
 
 /**
- * main - prints an ELF header
- * @argc: The count of arguments
+ * main - The Entry point for the ELF header
+ * @argc: the argument count
  * @argv: The argument vector
- * Return: 0 on success, other values on failure
- * This program conforms to the Betty documentation style
+ * Return: int or exit code
+ * This program conforms to the betty documentation style
  **/
 
 int main(int argc, char **argv)
@@ -269,40 +284,32 @@ int main(int argc, char **argv)
 	char match[4] = {0x7f, 'E', 'L', 'F'};
 
 	if (argc != 2)
-	{
-		write(STDERR_FILENO, "Usage: ", 7);
-		write(STDERR_FILENO, argv[0], strlen(argv[0]));
-		write(STDERR_FILENO, " <filename>\n", 12);
-		exit(EXIT_FAILURE);
-	}
-
-
+		print_errors("Improper usage\n");
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		print_error_msg("Could not open the file\n");
-
+		print_errors("Could not open the file\n");
 	readVal = read(fd, buffer, 16);
 	if (readVal == -1)
-		print_error_msg("Could not read from the file\n");
-
+		print_errors("Could not read from the file\n");
 	for (k = 0; k < 4; k++)
 	{
 		if (buffer[k] != match[k])
-			print_error_msg("Sorry, it's not an ELF file!\n");
+		print_errors("Sorry, it's not an ELF file!\n");
 	}
-
+	/*printing the Elf header! */
 	printf("ELF Header:\n");
 	print_magic(buffer);
 	print_class(buffer);
 	print_data(buffer);
 	print_version(buffer);
-	print_OS_ABI(buffer);
-	print_ABI_version(buffer);
+	print_os(buffer);
+	print_ABIversion(buffer);
 	print_type(buffer);
 	print_entry();
-
+	/* close the Elf Header file*/
 	if (close(fd))
-		print_error_msg("Could not close the file");
+		print_errors("Could not close the file");
+
+
 	return (0);
 }
-
