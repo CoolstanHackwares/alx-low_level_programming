@@ -5,7 +5,6 @@
  * should be stored in array of the hash table
  * @key: The key to hash
  * @size: The size of the hash table array
- * 
  * Return: The index at which the key/value pair should be stored
  * This program conforms to the betty documentation style
  **/
