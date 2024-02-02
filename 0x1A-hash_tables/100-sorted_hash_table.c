@@ -28,98 +28,6 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
- * create_node -  A function that creates a new hash table node
- * @node: Address of the node pointer
- * @key: Node key to set
- * @value: Node value to set
- *
- * Return: 1 on success, 0 on failure
- * This program conforms to the betty documentation style
- **/
-
-int create_node(shash_node_t **node, const char *key, const char *value)
-{
-	*node = malloc(sizeof(shash_node_t));
-	if (!*node)
-		return (0);
-
-	(*node)->key = strdup(key);
-	if (!(*node)->key)
-	{
-		free(*node);
-		return (0);
-	}
-
-	(*node)->value = strdup(value);
-	if (!(*node)->value)
-	{
-		free((*node)->key);
-		free(*node);
-		return (0);
-	}
-
-	(*node)->next = NULL;
-	(*node)->sprev = NULL;
-	(*node)->snext = NULL;
-
-	return (1);
-}
-
-/**
- * insrt_indx - A function that inserts node in array index position
- * @ht: Hash table
- * @node: Node to insert
- * @index: Index to insert node at
- * This program conforms to the betty documentation style
- **/
-
-void insrt_indx(shash_table_t *ht, shash_node_t *node, unsigned long int index)
-{
-
-	node->next = ht->array[index];
-	ht->array[index] = node;
-}
-
-
-/**
- * insert_sorted - A helper function to add a node to the correct position in
- * a sorted doubly linked list
- * @ht: The sorted hash table
- * @new: The new node to add
- * This program conforms to the betty documentation style
- **/
-
-void insert_sorted(shash_table_t *ht, shash_node_t *new)
-{
-	shash_node_t *curr;
-
-	curr = ht->shead;
-
-	while (curr && strcmp(curr->key, new->key) < 0)
-	{
-		curr = curr->snext;
-	}
-
-	if (curr == ht->shead)
-	{
-		new->snext = ht->shead;
-		ht->shead->sprev = new;
-		ht->shead = new;
-
-	}
-	else
-	{
-		new->snext = curr;
-		new->sprev = curr->sprev;
-		curr->sprev = new;
-		new->sprev->snext = new;
-	}
-
-	if (new->snext == NULL)
-		ht->stail = new;
-}
-
-/**
  * shash_table_set - A function that adds an element to sorted hash table
  * @ht: The sorted hash table
  * @key: The key to add - cannot be empty string
@@ -132,19 +40,67 @@ void insert_sorted(shash_table_t *ht, shash_node_t *new)
 int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	shash_node_t *new;
+	shash_node_t *new, *curr;
 
 	if (!ht || !key || !value || !(strlen(key) > 0))
 		return (0);
 
 	index = key_index((unsigned char *)key, ht->size);
 
-	if (!create_node(&new, key, value))
+	new = malloc(sizeof(shash_node_t));
+	if (!new)
 		return (0);
 
-	insrt_indx(ht, new, index);
+	new->key = strdup(key);
+	if (!new->key)
+	{
+		free(new);
+		return (0);
+	}
 
-	insert_sorted(ht, new);
+	new->value = strdup(value);
+	if (!new->value)
+	{
+		free(new->key);
+		free(new);
+		return (0);
+	}
+
+	new->next = ht->array[index];
+	ht->array[index] = new;
+
+	curr = ht->shead;
+	new->sprev = NULL;
+	new->snext = NULL;
+
+	if (!ht->shead)
+	{
+		ht->shead = new;
+		ht->stail = new;
+		return (1);
+	}
+
+	while (curr && strcmp(curr->key, key) < 0)
+	{
+		curr = curr->snext;
+	}
+
+	if (curr == ht->shead)
+	{
+		new->snext = ht->shead;
+		ht->shead->sprev = new;
+		ht->shead = new;
+	}
+	else
+	{
+		new->snext = curr;
+		new->sprev = curr->sprev;
+		curr->sprev = new;
+		new->sprev->snext = new;
+	}
+
+	if (new->snext == NULL)
+		ht->stail = new;
 
 	return (1);
 }
