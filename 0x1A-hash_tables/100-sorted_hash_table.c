@@ -42,7 +42,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	unsigned long int index;
 	shash_node_t *new, *curr;
 
-	if (!ht || !key || !value)
+	if (!ht || !key || !value || !(strlen(key) > 0))
 		return (0);
 
 	index = key_index((unsigned char *)key, ht->size);
@@ -52,7 +52,19 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	new->key = strdup(key);
+	if (!new->key)
+	{
+		free(new);
+		return (0);
+	}
+
 	new->value = strdup(value);
+	if (!new->value)
+	{
+		free(new->key);
+		free(new);
+		return (0);
+	}
 
 	new->next = ht->array[index];
 	ht->array[index] = new;
@@ -93,13 +105,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	return (1);
 }
 
-
-if (new->snext == NULL)
-	ht->stail = new;
-
-	return (1);
-	}
-
 /**
  * shash_table_get - A function that retrieves value associated with a key
  * @ht: The sorted hash table
@@ -124,12 +129,12 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	while (node)
 	{
 		if (strcmp(node->key, key) == 0)
-	{
-	       value = node->value;
-	break;
-	}
+		{
+			value = node->value;
+			break;
+		}
 
-	node = node->next;
+		node = node->next;
 	}
 
 	return (value);
