@@ -28,19 +28,17 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	for (step += step_size; jump->index < step; jump = jump->next)
 {
 	if (jump->index + 1 == size)
-		break;
-	printf("Value checked at index [%lu] = [%d]\n", jump->index, jump->n);
+	break;
 }
+	printf("Value checked at index [%ld] = [%d]\n", jump->index, jump->n);
 }
 
-	printf("Value found between indexes [%lu] and [%lu]\n",
+	printf("Value found between indexes [%ld] and [%ld]\n",
 		node->index, jump->index);
 
 	for (; node->index < jump->index && node->n < value; node = node->next)
-{
-	printf("Value checked at index [%lu] = [%d]\n", node->index, node->n);
-}
-	printf("Value checked at index [%lu] = [%d]\n", node->index, node->n);
+	printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
+	printf("Value checked at index [%ld] = [%d]\n", node->index, node->n);
 
 	return (node->n == value ? node : NULL);
 }
