@@ -66,7 +66,9 @@ void print_array(int *array, size_t lo, size_t hi)
 	printf("Searching in array: ");
 	for (a = lo; a <= hi; a++)
 {
-	printf("%d, ", array[a]);
+	printf("%d", array[a]);
+	if (a != hi)
+	printf(", ");
 }
-	printf("%d\n", array[a]);
+	printf("\n");
 }
