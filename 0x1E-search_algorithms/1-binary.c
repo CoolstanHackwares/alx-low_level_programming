@@ -67,7 +67,7 @@ void print_array(int *array, size_t lo, size_t hi)
 	for (a = lo; a <= hi; a++)
 {
 	printf("%d", array[a]);
-	if (a != hi)
+	if (a < hi)
 	printf(", ");
 }
 	printf("\n");
